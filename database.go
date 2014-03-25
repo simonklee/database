@@ -33,10 +33,6 @@ func NewDB(dsn string) *DB {
 	return &DB{*sqlxDb, newStmtCache()}
 }
 
-func (db *DB) LoadSchema(dropTables bool) error {
-	return loadSchema(&db.DB, dropTables)
-}
-
 type Conn interface {
 	sqlx.Queryer
 	sqlx.Execer
