@@ -111,12 +111,12 @@ func StmtClose(conn Conn, stmt *sqlx.Stmt) error {
 
 func Exec(conn Conn, query string, args ...interface{}) (sql.Result, error) {
 	return conn.Exec(query, args...)
-	if stmt, err := Prepare(conn, query); err != nil {
-		return nil, err
-	} else {
-		defer StmtClose(conn, stmt)
-		return stmt.Exec(args...)
-	}
+	// if stmt, err := Prepare(conn, query); err != nil {
+	// 	return nil, err
+	// } else {
+	// 	defer StmtClose(conn, stmt)
+	// 	return stmt.Exec(args...)
+	// }
 }
 
 func Queryx(conn Conn, query string, args ...interface{}) (*sqlx.Rows, error) {
