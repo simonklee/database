@@ -190,10 +190,10 @@ func querySelect(m *DbMap, exec Conn, dest interface{}, query string, args ...in
 	case reflect.Slice:
 		//sqlrows, err := stmt.Query(args...)
 		sqlrows, err := exec.Query(query, args...)
-		defer sqlrows.Close()
 		if err != nil {
 			return err
 		}
+		defer sqlrows.Close()
 		return sqlx.StructScan(sqlrows, dest)
 	default:
 		return fmt.Errorf("select dest must be a pointer to a slice or struct, but got: %t", dest)
