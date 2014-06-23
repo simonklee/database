@@ -37,7 +37,6 @@ type Conn interface {
 	sqlx.Queryer
 	sqlx.Execer
 	sqlx.Preparer
-	sqlx.Binder
 	Preparex(string) (*sqlx.Stmt, error)
 }
 
