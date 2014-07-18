@@ -63,7 +63,7 @@ func dbFromConf(t *testing.T) *DB {
 
 	if os.Getenv("TRAVIS") == "true" {
 		dbname = "myapp_test"
-		dsn = fmt.Sprintf("root:@tcp(localhost:3306)/%s?charset=utf8&parseTime=True")
+		dsn = fmt.Sprintf("root:@tcp(localhost:3306)/%s?charset=utf8&parseTime=True", dbname)
 	}
 
 	db := NewDB(dsn)
