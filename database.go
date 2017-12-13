@@ -3,11 +3,15 @@ package database
 import (
 	"database/sql"
 
-	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
 
 var ErrNoRows = sql.ErrNoRows
+
+type NullTime struct {
+	mysql.NullTime
+}
 
 func connect(driver, dsn string) *sql.DB {
 	db, err := sql.Open(driver, dsn)
