@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/simonz05/util/log"
 )
 
 type Args map[string]interface{}
@@ -67,7 +66,6 @@ func PrepareIntIN(args *[]interface{}, w *[]string, value interface{}, table, fi
 		*w = append(*w, fmt.Sprintf("%s.%s = ?", table, field))
 	default:
 		err := fmt.Errorf("expected %s type int or []int, got %T", field, v)
-		log.Error(err.Error())
 		return err
 	}
 	return nil

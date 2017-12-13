@@ -5,8 +5,6 @@ import (
 	"os"
 	"sync"
 	"testing"
-
-	"github.com/simonz05/util/assert"
 )
 
 var regOnce sync.Once
@@ -30,15 +28,24 @@ func TestDatabase(t *testing.T) {
 	db := dbFromConf(t)
 	setUp(t, db)
 	defer tearDown(t, db)
-	ast := assert.NewAssert(t)
 
 	cnt, err := friendCount(db)
-	ast.Nil(err)
-	ast.Equal(0, cnt)
+
+	if err != nil {
+		t.Fatalf("expected nil got %v", err)
+	}
+
+	if cnt != 0 {
+		t.Fatalf("expected 0 got %d", cnt)
+	}
 
 	f := &Friend{Name: "Foo"}
 	err = friendPut(db, f)
-	ast.Nil(err)
+
+	if err != nil {
+		t.Fatalf("expected nil got %v", err)
+	}
+
 	ast.Equal(1, f.FriendID)
 }
 
